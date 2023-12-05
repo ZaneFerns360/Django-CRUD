@@ -1,0 +1,5 @@
+node_modules
+/static/CACHE/css/*
+/mysite/__pycache__
+/staticfiles/*
+db.sqlite3
