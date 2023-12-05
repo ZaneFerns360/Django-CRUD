@@ -3,3 +3,4 @@ node_modules
 /mysite/__pycache__
 /staticfiles/*
 db.sqlite3
+.my_pgpass
