@@ -80,6 +80,7 @@ DATABASES = {
         "OPTIONS": {
             "service": "my_service",
             "passfile": ".my_pgpass",
+            "server_side_binding": True,
         },
     }
 }
