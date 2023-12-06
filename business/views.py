@@ -7,6 +7,8 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .models import Business
+from django.utils import timezone
+from django import forms
 
 
 def index(request):
@@ -38,19 +40,34 @@ def guarded_view(request):
     return render(request, "form.html")
 
 
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = [
+            "name",
+            "address",
+            "type",
+            "opening_time",
+            "closing_time",
+            "contact_info",
+        ]
+
+
 def create_business(request):
     if request.method == "POST":
-        business = Business(
-            user=request.user,
-            name=request.POST["business_name"],
-            pub_date=request.POST["pub_date"],
-            address=request.POST["address"],
-            type=request.POST["type"],
-            timings=request.POST["timings"],
-            likes=request.POST["likes"],
-            contact_info=request.POST["contact_info"],
-        )
-        business.save()
-        return redirect("")
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = request.user
+            business.pub_date = timezone.now()
+            business.likes = 0
+            business.save()
+            return redirect("business_list")
     else:
-        return render(request, "form.html")
+        form = BusinessForm()
+    return render(request, "form.html", {"form": form})
+
+
+def business_list(request):
+    businesses = Business.objects.all()
+    return render(request, "business_list.html", {"businesses": businesses})

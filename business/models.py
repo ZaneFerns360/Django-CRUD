@@ -8,6 +8,7 @@ class Business(models.Model):
     pub_date = models.DateTimeField("date published")
     address = models.CharField(max_length=300)
     type = models.CharField(max_length=30)
-    timings = models.TimeField()
+    opening_time = models.TimeField()
+    closing_time = models.TimeField()
     likes = models.BigIntegerField()
     contact_info = models.CharField(max_length=40)

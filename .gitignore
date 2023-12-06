@@ -1,7 +1,5 @@
 node_modules
 /static/CACHE/css/*
-/mysite/__pycache__
-/business/__pycache__
 /staticfiles/*
 db.sqlite3
 .my_pgpass

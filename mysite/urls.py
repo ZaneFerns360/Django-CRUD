@@ -19,6 +19,7 @@ from django.urls import path
 from business.views import index, LoginView, signup
 from business.views import CustomLogoutView
 from business.views import guarded_view
+from business.views import business_list
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("logout/", CustomLogoutView.as_view(), name="logout"),
     path("form/", guarded_view, name="form"),
+    path("business_list/", business_list, name="business_list"),
 ]

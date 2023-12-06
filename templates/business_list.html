@@ -1,0 +1,19 @@
+<!-- templates/business_list.html -->
+
+{% extends "_base.html" %} {% block content %}
+<div class="max-w-md mx-auto">
+  <h2 class="text-center mb-5">Business List</h2>
+
+  {% for business in businesses %}
+  <div class="mb-4">
+    <h3>{{ business.name }}</h3>
+    <p>{{ business.address }}</p>
+    <p>{{ business.type }}</p>
+    <p>{{ business.timings }}</p>
+    <p>{{ business.opening_time }}</p>
+    <p>{{ business.closing_time }}</p>
+    <p>{{ business.contact_info }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
