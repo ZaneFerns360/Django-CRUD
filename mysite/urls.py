@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import index, LoginView, signup
 from .views import CustomLogoutView
+from .views import guarded_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,4 +26,5 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
     path("signup/", signup, name="signup"),
     path("logout/", CustomLogoutView.as_view(), name="logout"),
+    path("form/", guarded_view, name="form"),
 ]
