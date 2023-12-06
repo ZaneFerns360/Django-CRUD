@@ -9,6 +9,7 @@ from django.shortcuts import render
 from .models import Business
 from django.utils import timezone
 from django import forms
+from django.forms import modelform_factory
 
 
 def index(request):
@@ -40,20 +41,19 @@ def guarded_view(request):
     return render(request, "form.html")
 
 
-class BusinessForm(forms.ModelForm):
-    class Meta:
-        model = Business
-        fields = [
+def create_business(request):
+    BusinessForm = modelform_factory(
+        Business,
+        fields=(
             "name",
             "address",
             "type",
             "opening_time",
             "closing_time",
             "contact_info",
-        ]
-
-
-def create_business(request):
+        ),
+        exclude=("user", "pub_date", "likes", "id"),
+    )
     if request.method == "POST":
         form = BusinessForm(request.POST)
         if form.is_valid():
