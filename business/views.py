@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from .models import Business
 
 
 def index(request):
@@ -35,3 +36,21 @@ def signup(request):
 @login_required
 def guarded_view(request):
     return render(request, "form.html")
+
+
+def create_business(request):
+    if request.method == "POST":
+        business = Business(
+            user=request.user,
+            name=request.POST["business_name"],
+            pub_date=request.POST["pub_date"],
+            address=request.POST["address"],
+            type=request.POST["type"],
+            timings=request.POST["timings"],
+            likes=request.POST["likes"],
+            contact_info=request.POST["contact_info"],
+        )
+        business.save()
+        return redirect("business_list")
+    else:
+        return render(request, "create_business.html")
