@@ -51,6 +51,6 @@ def create_business(request):
             contact_info=request.POST["contact_info"],
         )
         business.save()
-        return redirect("business_list")
+        return redirect("")
     else:
-        return render(request, "create_business.html")
+        return render(request, "form.html")
