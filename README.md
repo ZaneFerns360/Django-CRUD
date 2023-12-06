@@ -1,6 +1,12 @@
 # django-tailwinds
 starter config for django + tailwinds + flowbite
 
+## Make Database Migrations:
+```bash
+python manage.py migrate 
+# &
+python manage.py makemigrations business
+```
 ## Install node pakages:
 ```bash
 npm install
