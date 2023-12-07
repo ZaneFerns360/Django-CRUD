@@ -37,10 +37,6 @@ def signup(request):
 
 
 @login_required
-def guarded_view(request):
-    return render(request, "form.html")
-
-
 def create_business(request):
     BusinessForm = modelform_factory(
         Business,

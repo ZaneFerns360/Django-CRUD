@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path
 from business.views import index, LoginView, signup
 from business.views import CustomLogoutView
-from business.views import guarded_view
 from business.views import business_list
 from business.views import create_business
 
