@@ -1,20 +1,23 @@
 <!-- templates/business_list.html -->
 
 {% extends "_base.html" %} {% block content %}
-<div class="max-w-md mx-auto">
-  <h2 class="text-center mb-5">Business List</h2>
+<h2 class="text-center mb-5 font-bold text-4xl">Business List</h2>
 
+<div class="grid grid-cols-4 gap-6 w-full">
   {% for business in businesses %}
-  <div class="mb-4">
-    <h3>{{ business.name }}</h3>
-    <p>{{ business.address }}</p>
-    <p>{{ business.type }}</p>
-    <p>{{ business.opening_time }}</p>
-    <p>{{ business.closing_time }}</p>
-    <p>{{ business.contact_info }}</p>
-    {% if business.image %}
-    <img src="{{ business.image.url }}" alt="{{ business.name }}" />
-    {% endif %}
+  <div class="card bg-white p-4 rounded-lg shadow-md">
+    <div class="card-body">
+      {% if business.image %}
+      <img
+        src="{{ business.image }}"
+        alt="{{ business.name }}"
+        class="h-full max-w-full rounded-xl"
+      />
+      {% endif %}
+      <h3>{{ business.name }}</h3>
+
+      <p>{{ business.type }}</p>
+    </div>
   </div>
   {% endfor %}
 </div>
