@@ -5,3 +5,5 @@ db.sqlite3
 .my_pgpass
 **/__pycache__/
 **/migrations/
+/env/*
+.env
