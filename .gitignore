@@ -7,3 +7,4 @@ db.sqlite3
 **/migrations/
 /env/*
 .env
+test.py

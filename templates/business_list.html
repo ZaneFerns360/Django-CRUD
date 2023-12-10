@@ -9,10 +9,12 @@
     <h3>{{ business.name }}</h3>
     <p>{{ business.address }}</p>
     <p>{{ business.type }}</p>
-    <p>{{ business.timings }}</p>
     <p>{{ business.opening_time }}</p>
     <p>{{ business.closing_time }}</p>
     <p>{{ business.contact_info }}</p>
+    {% if business.image %}
+    <img src="{{ business.image.url }}" alt="{{ business.name }}" />
+    {% endif %}
   </div>
   {% endfor %}
 </div>

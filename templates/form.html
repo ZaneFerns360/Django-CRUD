@@ -1,5 +1,5 @@
 {% extends "_base.html" %} {% block content %}
-<form class="max-w-md mx-auto" method="POST">
+<form class="max-w-md mx-auto" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <h2 class="text-center mb-5">Register Your Business</h2>
 
@@ -100,13 +100,14 @@
   <div class="container mx-auto mt-4 pb-5">
     <label
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      for="file_input"
+      for="image"
       >Upload Picture</label
     >
     <input
       class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-      id="file_input"
       type="file"
+      name="image"
+      id="image"
     />
   </div>
   <button

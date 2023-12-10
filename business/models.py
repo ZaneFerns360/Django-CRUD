@@ -14,3 +14,4 @@ class Business(models.Model):
     closing_time = models.TimeField()
     likes = models.BigIntegerField()
     contact_info = models.CharField(max_length=40)
+    image = models.CharField(max_length=500)  # New field for image URL
