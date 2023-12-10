@@ -3,6 +3,19 @@ from django.contrib.auth.models import User
 import uuid
 
 
+class Item(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    image = models.CharField(max_length=500)
+    name = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    rating = models.DecimalField(max_digits=2, decimal_places=1)
+
+
+class Menu(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    items = models.ManyToManyField(Item)
+
+
 class Business(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -14,4 +27,5 @@ class Business(models.Model):
     closing_time = models.TimeField()
     likes = models.BigIntegerField()
     contact_info = models.CharField(max_length=40)
-    image = models.CharField(max_length=500)  # New field for image URL
+    image = models.CharField(max_length=500)
+    menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True, blank=True)
