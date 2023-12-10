@@ -91,4 +91,4 @@ def business_list(request):
 @login_required
 def my_business(request):
     businesses = Business.objects.filter(user=request.user)
-    return render(request, "business_list.html", {"businesses": businesses})
+    return render(request, "my_business.html", {"businesses": businesses})

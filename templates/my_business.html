@@ -1,0 +1,27 @@
+<!-- templates/my_business.html -->
+
+{% extends "_base.html" %} {% block content %}
+<h2 class="text-center mb-5 font-bold text-4xl">My Business List</h2>
+
+<div class="grid grid-cols-4 gap-6 w-full">
+  {% for business in businesses %}
+  <div class="card bg-white p-4 rounded-lg shadow-md">
+    <div class="card-body">
+      <a href="{% url 'business_detail' business.id %}">
+        {% if business.image %}
+        <img
+          src="{{ business.image }}"
+          alt="{{ business.name }}"
+          class="h-full max-w-full rounded-xl"
+        />
+        {% endif %}
+        <h3>{{ business.name }}</h3>
+        <p>{{ business.id }}</p>
+
+        <p>{{ business.type }}</p>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
