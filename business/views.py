@@ -86,3 +86,9 @@ def create_business(request):
 def business_list(request):
     businesses = Business.objects.all()
     return render(request, "business_list.html", {"businesses": businesses})
+
+
+@login_required
+def my_business(request):
+    businesses = Business.objects.filter(user=request.user)
+    return render(request, "business_list.html", {"businesses": businesses})

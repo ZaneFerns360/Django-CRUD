@@ -20,6 +20,7 @@ from business.views import index, LoginView, signup
 from business.views import CustomLogoutView
 from business.views import business_list
 from business.views import create_business
+from business.views import my_business
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,4 +30,5 @@ urlpatterns = [
     path("logout/", CustomLogoutView.as_view(), name="logout"),
     path("form/", create_business, name="form"),
     path("business_list/", business_list, name="business_list"),
+    path("my_business/", my_business, name="my_business"),
 ]
