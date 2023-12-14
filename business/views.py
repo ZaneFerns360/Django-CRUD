@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .models import Business, Menu
+from .models import Business, Menu, Item
 from django.utils import timezone
 from django.forms import modelform_factory
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
@@ -105,7 +105,7 @@ def my_business(request, business_id):
 @login_required
 def create_menu_item(request, menu_id):
     ItemForm = modelform_factory(
-        Business,
+        Item,  # Use Item model here
         fields=(
             "name",
             "image",
@@ -118,7 +118,7 @@ def create_menu_item(request, menu_id):
         if form.is_valid():
             item = form.save(commit=False)
             item.rating = 0
-            # Create an empty Menu for the Business
+
             # Azure Blob Storage upload
             blob_service_client = BlobServiceClient.from_connection_string(
                 os.getenv("AZURE_CONNECTION_STRING"),
@@ -133,7 +133,12 @@ def create_menu_item(request, menu_id):
             item.image = blob_client.url
 
             item.save()
-            return redirect("business_list")
+
+            # Fetch the Menu and add the Item to it
+            menu = Menu.objects.get(id=menu_id)
+            menu.items.add(item)
+
+            return redirect("your_business")
     else:
         form = ItemForm()
-    return render(request, "form.html", {"form": form})
+    return render(request, "menu_add.html", {"form": form})
