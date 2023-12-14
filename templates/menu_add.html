@@ -1,39 +1,53 @@
 {% extends "_base.html" %} {% block content %}
 <form class="mx-auto max-w-md" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  <h2 class="mb-5 text-center">Create a Menu</h2>
+  <h2 class="mb-5 text-center">Create New Menu Item</h2>
 
   <div class="group relative z-0 mb-5 w-full">
     <input
       type="text"
       name="name"
-      id="business_name"
+      id="item_name"
       class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
       placeholder=" "
       required
     />
     <label
-      for="business_name"
+      for="item_name"
       class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 rtl:peer-focus:translate-x-1/4 dark:text-gray-400 peer-focus:dark:text-blue-500"
-      >Business Name</label
-    >
-  </div>
-  <div class="group relative z-0 mb-5 w-full">
-    <input
-      type="text"
-      name="contact_info"
-      id="contact"
-      class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-      placeholder=" "
-      required
-    />
-    <label
-      for="contact"
-      class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 rtl:peer-focus:translate-x-1/4 dark:text-gray-400 peer-focus:dark:text-blue-500"
-      >Contact Information</label
+      >Item Name</label
     >
   </div>
 
+  <div class="group relative z-0 mb-5 w-full">
+    <input
+      type="number"
+      name="price"
+      id="item_price"
+      class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+      placeholder=" "
+      required
+    />
+    <label
+      for="item_price"
+      class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:start-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:font-medium peer-focus:text-blue-600 rtl:peer-focus:translate-x-1/4 dark:text-gray-400 peer-focus:dark:text-blue-500"
+      >Item Price</label
+    >
+  </div>
+
+  <div class="container mx-auto mt-4 pb-5">
+    <label
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+      for="image"
+      >Upload Picture</label
+    >
+    <input
+      class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
+      type="file"
+      name="image"
+      id="image"
+    />
+  </div>
   <button
     type="submit"
     class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
