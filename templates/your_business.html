@@ -2,30 +2,37 @@
 
 {% extends "_base.html" %} {% block content %}
 <h2 class="text-center mb-5 font-bold text-4xl">My Business</h2>
+<div class="flex items-center justify-center h-full">
+  <div
+    class="bg-white p-4 rounded-lg shadow-md flex-col items-center justify-center max-w-fit"
+  >
+    <div class="flex-col">
+      {% if business.image %}
 
-<div
-  class="bg-white p-4 rounded-lg shadow-md flex items-center justify-center max-w-fit"
->
-  <div class="">
-    {% if business.image %}
+      <figure class="max-w-lg">
+        <img
+          class="rounded-xl"
+          src="{{ business.image }}"
+          alt="{{ business.name }}"
+        />
+        <figcaption
+          class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400"
+        >
+          {{ business.name }}
+        </figcaption>
+      </figure>
 
-    <figure class="max-w-lg">
-      <img
-        class="rounded-xl"
-        src="{{ business.image }}"
-        alt="{{ business.name }}"
-      />
-      <figcaption
-        class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400"
-      >
-        {{ business.name }}
-      </figcaption>
-    </figure>
-
-    {% endif %}
-    <h3>{{ business.name }}</h3>
-    <p>{{ business.id }}</p>
-    <p>{{ business.type }}</p>
+      {% endif %}
+      <h3>{{ business.name }}</h3>
+      <p>ID: {{ business.id }}</p>
+      <p>Type: {{ business.type }}</p>
+      <p>Address: {{ business.address }}</p>
+      <p>Opening Time: {{ business.opening_time }}</p>
+      <p>Closing Time: {{ business.closing_time }}</p>
+      <p>Likes: {{ business.likes }}</p>
+      <p>Contact Info: {{ business.contact_info }}</p>
+      <!-- Add more details as needed -->
+    </div>
   </div>
 </div>
 {% endblock %}
