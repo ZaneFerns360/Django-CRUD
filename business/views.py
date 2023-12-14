@@ -100,3 +100,40 @@ def business_page(request):
 def my_business(request, business_id):
     business = Business.objects.get(id=business_id, user=request.user)
     return render(request, "your_business.html", {"business": business})
+
+
+@login_required
+def create_menu_item(request, menu_id):
+    ItemForm = modelform_factory(
+        Business,
+        fields=(
+            "name",
+            "image",
+            "price",
+        ),
+        exclude=("rating", "id"),
+    )
+    if request.method == "POST":
+        form = ItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.rating = 0
+            # Create an empty Menu for the Business
+            # Azure Blob Storage upload
+            blob_service_client = BlobServiceClient.from_connection_string(
+                os.getenv("AZURE_CONNECTION_STRING"),
+            )
+
+            # Generate a unique filename by appending a UUID
+            unique_filename = str(uuid.uuid4()) + "_" + request.FILES["image"].name
+
+            blob_client = blob_service_client.get_blob_client("dj2", unique_filename)
+
+            blob_client.upload_blob(request.FILES["image"].read())
+            item.image = blob_client.url
+
+            item.save()
+            return redirect("business_list")
+    else:
+        form = ItemForm()
+    return render(request, "form.html", {"form": form})
