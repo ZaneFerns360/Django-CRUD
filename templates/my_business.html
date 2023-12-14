@@ -1,11 +1,11 @@
 <!-- templates/my_business.html -->
 
 {% extends "_base.html" %} {% block content %}
-<h2 class="text-center mb-5 font-bold text-4xl">My Business List</h2>
+<h2 class="mb-5 text-center text-4xl font-bold">My Business List</h2>
 
-<div class="grid grid-cols-4 gap-6 w-full">
+<div class="grid w-full grid-cols-4 gap-6">
   {% for business in businesses %}
-  <div class="card bg-white p-4 rounded-lg shadow-md">
+  <div class="card rounded-lg bg-white p-4 shadow-md">
     <div class="card-body">
       <a href="{% url 'your_business' business.id %}">
         {% if business.image %}
