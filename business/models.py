@@ -16,6 +16,11 @@ class Menu(models.Model):
     items = models.ManyToManyField(Item)
 
 
+class Images(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    image = models.CharField(max_length=500)
+
+
 class Business(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,3 +34,4 @@ class Business(models.Model):
     contact_info = models.CharField(max_length=40)
     image = models.CharField(max_length=500)
     menu = models.OneToOneField(Menu, on_delete=models.CASCADE)
+    other_images = models.ManyToManyField(Images)
