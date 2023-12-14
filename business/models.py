@@ -28,4 +28,4 @@ class Business(models.Model):
     likes = models.BigIntegerField()
     contact_info = models.CharField(max_length=40)
     image = models.CharField(max_length=500)
-    menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True, blank=True)
+    menu = models.OneToOneField(Menu, on_delete=models.CASCADE)

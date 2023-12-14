@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .models import Business
+from .models import Business, Menu
 from django.utils import timezone
 from django.forms import modelform_factory
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
@@ -53,7 +53,7 @@ def create_business(request):
             "closing_time",
             "contact_info",
         ),
-        exclude=("user", "pub_date", "likes", "id", "image"),
+        exclude=("user", "pub_date", "likes", "id", "image", "menu"),
     )
     if request.method == "POST":
         form = BusinessForm(request.POST, request.FILES)
@@ -62,7 +62,9 @@ def create_business(request):
             business.user = request.user
             business.pub_date = timezone.now()
             business.likes = 0
-
+            # Create an empty Menu for the Business
+            menu = Menu.objects.create()
+            business.menu = menu
             # Azure Blob Storage upload
             blob_service_client = BlobServiceClient.from_connection_string(
                 os.getenv("AZURE_CONNECTION_STRING"),
