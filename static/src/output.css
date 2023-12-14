@@ -1706,14 +1706,6 @@ input:checked + .toggle-bg {
   padding-top: 0.5rem;
 }
 
-.pt-20 {
-  padding-top: 5rem;
-}
-
-.pb-96 {
-  padding-bottom: 24rem;
-}
-
 .text-center {
   text-align: center;
 }
