@@ -7,7 +7,7 @@
   {% for business in businesses %}
   <div class="card bg-white p-4 rounded-lg shadow-md">
     <div class="card-body">
-      <a href="{% url 'business_detail' business.id %}">
+      <a href="{% url 'your_business' business.id %}">
         {% if business.image %}
         <img
           src="{{ business.image }}"
