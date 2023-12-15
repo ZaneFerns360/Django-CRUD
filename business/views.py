@@ -134,7 +134,7 @@ def create_menu_item(request, business_id):
             business = Business.objects.get(id=business_id)
             business.items.add(item)
 
-            return redirect("your_business")
+            return redirect("your_business", business_id=business_id)
         else:
             print(form.errors)  # print form errors
     else:
