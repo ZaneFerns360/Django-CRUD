@@ -1,0 +1,24 @@
+<!-- templates/view_menu.html -->
+
+{% extends "_base.html" %} {% block content %}
+<h2 class="mb-5 text-center text-4xl font-bold">Menu Items</h2>
+
+<div class="grid w-full grid-cols-4 gap-6">
+  {% for item in items %}
+  <div class="card rounded-lg bg-white p-4 shadow-md">
+    <div class="card-body">
+      {% if item.image %}
+      <img
+        src="{{ item.image }}"
+        alt="{{ item.name }}"
+        class="h-full max-w-full rounded-xl"
+      />
+      {% endif %}
+      <h3>{{ item.name }}</h3>
+      <p>Price: {{ item.price }}</p>
+      <p>Rating: {{ item.rating }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

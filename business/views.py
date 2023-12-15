@@ -139,3 +139,10 @@ def create_menu_item(request, business_id):
     else:
         form = ItemForm()
     return render(request, "menu_add.html", {"form": form})
+
+
+@login_required
+def view_menu(request, business_id):
+    business = Business.objects.get(id=business_id, user=request.user)
+    items = business.items.all()
+    return render(request, "view_menu.html", {"items": items})

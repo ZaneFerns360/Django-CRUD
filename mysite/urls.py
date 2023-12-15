@@ -23,6 +23,7 @@ from business.views import create_business
 from business.views import my_business
 from business.views import business_page
 from business.views import create_menu_item
+from business.views import view_menu
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -39,4 +40,5 @@ urlpatterns = [
         create_menu_item,
         name="create_menu_item",
     ),
+    path("my_business/<uuid:business_id>/items", view_menu, name="view_menu"),
 ]
