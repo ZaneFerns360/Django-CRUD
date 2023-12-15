@@ -136,6 +136,8 @@ def create_menu_item(request, business_id):
             business.items.add(item)
 
             return redirect("your_business")
+        else:
+            print(form.errors)  # print form errors
     else:
         form = ItemForm()
     return render(request, "menu_add.html", {"form": form})
