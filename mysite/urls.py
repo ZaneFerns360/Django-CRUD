@@ -35,7 +35,7 @@ urlpatterns = [
     path("my_business/", business_page, name="my_business"),
     path("my_business/<uuid:business_id>/", my_business, name="your_business"),
     path(
-        "my_business/<uuid:business_id>/<uuid:menu_id>/",
+        "my_business/<uuid:business_id>/menu/",
         create_menu_item,
         name="create_menu_item",
     ),

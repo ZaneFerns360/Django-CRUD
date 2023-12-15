@@ -11,11 +11,6 @@ class Item(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1)
 
 
-class Menu(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    items = models.ManyToManyField(Item)
-
-
 class Images(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.CharField(max_length=500)
@@ -33,5 +28,5 @@ class Business(models.Model):
     likes = models.BigIntegerField()
     contact_info = models.CharField(max_length=40)
     image = models.CharField(max_length=500)
-    menu = models.OneToOneField(Menu, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Item, blank=True)  # allow no items
     other_images = models.ManyToManyField(Images)
