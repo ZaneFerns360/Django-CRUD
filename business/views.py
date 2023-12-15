@@ -105,10 +105,9 @@ def create_menu_item(request, business_id):
         Item,
         fields=(
             "name",
-            "image",
             "price",
         ),
-        exclude=("rating", "id"),
+        exclude=("rating", "id", "image"),
     )
     if request.method == "POST":
         form = ItemForm(request.POST, request.FILES)
